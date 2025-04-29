@@ -2,8 +2,6 @@
 
 A modern web application that helps job seekers generate personalized cover letters using AI. Built with Next.js, React, and OpenAI's API.
 
-![AI Cover Letter Generator](public/favicon.ico)
-
 ## Features
 
 - **AI-Powered Cover Letter Generation**: Create professional cover letters tailored to specific job positions
