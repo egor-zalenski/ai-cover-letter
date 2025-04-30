@@ -45,7 +45,7 @@ export function GeneratorPageLayout({ existingLetter }: GeneratorFormProps) {
             <OpenAIResult letter={existingLetter} />
           </FlexColumn>
         </FlexRow>
-        <GoalBanner />
+        {!!existingLetter && <GoalBanner />}
       </PageContainer>
     </>
   )

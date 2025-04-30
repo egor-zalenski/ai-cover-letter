@@ -17,12 +17,19 @@ export const FlexRow = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: var(--spacing-xl);
-  gap: 32px;
   flex-direction: column;
   
   @media ${device.laptop} {
     align-items: center;
     flex-direction: row;
+
+    & > :first-child {
+      padding-right: 16px;
+    }
+  
+    & > :last-child {
+      padding-left: 16px;
+    }
   }
 `
 export const FlexColumn = styled.div`

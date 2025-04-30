@@ -106,10 +106,6 @@ export const letterOperations = {
         ? this.updateLetter(existingLetterId, formData, generatedContent)
         : this.createLetter(formData, generatedContent)
       
-      if (letter) {
-        this.setLoading(false)
-      }
-      
       return letter
       
     } catch (error) {
