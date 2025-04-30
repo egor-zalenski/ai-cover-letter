@@ -48,7 +48,7 @@ export const PreviewContainer = styled.div`
     right: 0;
     height: 60px;
     pointer-events: none;
-    background: linear-gradient(to bottom, rgba(249, 249, 249, 0), rgba(249, 249, 249, 1));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), var(--card-background));
     z-index: 1;
   }
 `
