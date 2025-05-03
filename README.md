@@ -24,7 +24,7 @@ A modern web application that helps job seekers generate personalized cover lett
 
 ### Prerequisites
 
-- Node.js 18+ and npm/yarn
+- Node.js 18+ and yarn
 - OpenAI API key
 
 ### Installation
@@ -38,8 +38,6 @@ A modern web application that helps job seekers generate personalized cover lett
 2. Install dependencies:
    ```bash
    yarn install
-   # or
-   npm install
    ```
 
 3. Create a `.env.local` file in the root directory with your OpenAI API key:
@@ -50,8 +48,6 @@ A modern web application that helps job seekers generate personalized cover lett
 4. Start the development server:
    ```bash
    yarn dev
-   # or
-   npm run dev
    ```
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.

@@ -8,11 +8,11 @@ import { LoadingBallsContainer } from '@/ui/Feedback'
 export const LoadingState = () => {
   return (
     <ResultContainer>
-        <ContentContainer>
-          <LoadingBallsContainer>
-            <Image src="/icons/loading_ball.svg" alt="Loading ball" width={80} height={80} />
-          </LoadingBallsContainer>
-        </ContentContainer>
+      <ContentContainer>
+        <LoadingBallsContainer>
+          <Image src="/icons/loading_ball.svg" alt="Loading ball" width={80} height={80} />
+        </LoadingBallsContainer>
+      </ContentContainer>
     </ResultContainer>
   )
 } 

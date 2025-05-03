@@ -25,7 +25,7 @@ const CopyButtonContainer = styled.div`
 export const CopyButton: React.FC<CopyButtonProps> = ({ 
   text, 
   className, 
-  resetDelay = 2000,
+  resetDelay = 2_000,
 }) => {
   const { isCopied, copyToClipboard } = useClipboard()
   

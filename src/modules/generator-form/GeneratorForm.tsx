@@ -4,12 +4,13 @@ import { useCallback, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from '@tanstack/react-form'
 import { useOpenAIMutation } from '@/hooks/useOpenAI'
-import { GenerateFormData, useLetterStore } from '@/stores/letterStore'
+import { GeneratorFormData, useLetterStore } from '@/stores/letterStore'
 import { letterOperations } from '@/modules/generator-form/operations'
 import { notificationsService } from '@/services/notifications'
 import { GENERATE_COVER_LETTER_PROMPT } from '@/constants/strings'
-import { FormRenderer, FormField, ValidatorsFormData } from '@/components/FormRenderer'
+import { FormRenderer } from '@/components/FormRenderer'
 import { buildRoute } from '@/constants/routes'
+import { FormField, ValidatorsFormData } from '@/interfaces/forms'
 import { GeneratorFormProps } from './types'
 import { COVER_LETTER_FORM_FIELDS } from './constants/form-fields'
 import { useFormTitle } from './hooks/useFormTitle'
@@ -32,7 +33,7 @@ export function GeneratorForm({ existingLetter }: GeneratorFormProps) {
   })
 
   // Initial form data
-  const defaultValues: GenerateFormData = {
+  const defaultValues: GeneratorFormData = {
     company: existingLetter?.company || '',
     jobTitle: existingLetter?.jobTitle || '',
     skillsList: existingLetter?.skillsList || '',
@@ -54,9 +55,9 @@ export function GeneratorForm({ existingLetter }: GeneratorFormProps) {
   
   // Create field validators for form
   const validators = useMemo(() => {
-    const result = {} as ValidatorsFormData<GenerateFormData>
+    const result = {} as ValidatorsFormData<GeneratorFormData>
 
-    formFields.forEach((field: FormField<GenerateFormData>) => {
+    formFields.forEach((field: FormField<GeneratorFormData>) => {
       if (field.validate) {
         result[field.id] = field.validate
       }
@@ -64,9 +65,9 @@ export function GeneratorForm({ existingLetter }: GeneratorFormProps) {
     
     return result
   }, [formFields])
-  
+
   // Main letter generation handler
-  const handleGenerateLetter = useCallback((generatedContent: string, formValues?: GenerateFormData) => {
+  const handleGenerateLetter = useCallback((generatedContent: string, formValues?: GeneratorFormData) => {
     const values = formValues || form.state.values
     const letter = letterOperations.generateWithAI(values, generatedContent, existingLetter?.id)
 
@@ -83,7 +84,7 @@ export function GeneratorForm({ existingLetter }: GeneratorFormProps) {
         form.handleSubmit()
       }}
     >
-      <FormRenderer<GenerateFormData>
+      <FormRenderer<GeneratorFormData>
         form={form}
         formFields={formFields}
         validators={validators}

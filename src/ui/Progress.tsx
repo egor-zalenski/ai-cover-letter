@@ -4,9 +4,9 @@ import styled from 'styled-components'
 export const ProgressContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 12px;
   color: var(--text-gray);
-  font-size: 0.875rem;
+  font-size: 14px;
 `
 
 export const ProgressText = styled.span`

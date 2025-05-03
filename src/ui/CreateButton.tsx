@@ -1,11 +1,11 @@
 import { styled } from 'styled-components'
-import { StyledButton } from './Button'
-import { Link } from './Link'
 import { AppRoutes } from '@/constants/routes'
 import { IconName } from '@/constants/icons'
 import { SIZES } from '@/constants/app'
-import { Icon } from './Icon'
 import { BUTTON_LABELS } from '@/constants/strings'
+import { StyledButton } from './Button'
+import { Link } from './Link'
+import { Icon } from './Icon'
 
 // Styled button component with small size variant
 export const CreateStyledButton = styled(StyledButton)<{ $small?: boolean }>`
@@ -22,7 +22,10 @@ export const CreateStyledButton = styled(StyledButton)<{ $small?: boolean }>`
 
 // Create button component with optional small size prop
 export const CreateButton = ({ small = false}: {small?: boolean}) =>
-  <Link href={AppRoutes.GENERATOR}>
+  <Link
+    href={AppRoutes.GENERATOR}
+    aria-label="A link styled as a button to redirect to the letter generation page"
+  >
     <CreateStyledButton $small={small} $variant="primary">
       <Icon name={IconName.ADD} size={SIZES.ICON_SIZE.XSMALL} />
       <span>{BUTTON_LABELS.CREATE}</span>

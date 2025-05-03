@@ -20,7 +20,7 @@ const StyledTextArea = styled.textarea<{ $hasError?: boolean }>`
   width: 100%;
   padding: 8px 12px;
   height: 236px;
-  font-size: 1rem;
+  font-size: 16px;
   line-height: 1.5;
   color: var(--text-black);
   background-color: var(--background);

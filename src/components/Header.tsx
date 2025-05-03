@@ -7,13 +7,13 @@ import { useLetterStore } from '@/stores/letterStore'
 import { Link } from '@/ui/Link'
 import { Icon } from '@/ui/Icon'
 import { IconName } from '@/constants/icons'
+import { device } from '@/utils/device'
 import {
   ProgressContainer,
   ProgressDots,
   ProgressDot,
   ProgressText,
 } from '@/ui/Progress'
-import { device } from '@/utils/device'
 
 interface HeaderProps {
   targetCount?: number;
@@ -63,20 +63,16 @@ export const HeaderContent = styled.div`
   align-items: center;
   max-width: var(--container-width);
   margin: 0 auto;
-  
-  /* @media ${device.laptop} {
-    align-items: center;
-  } */
 `
 
 export const Logo = styled(Link)`
-  font-size: 1.25rem;
+  font-size: 20px;
   font-weight: 700;
   color: var(--gray-800);
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
   
   &:hover {
     text-decoration: none;
@@ -90,7 +86,7 @@ export const LogoIcon = styled.div`
 
 export const LogoText = styled.span`
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 20px;
 `
 
 export const Nav = styled.nav`
@@ -107,7 +103,7 @@ export const Nav = styled.nav`
 
 export const HeaderSpacer = styled.div`
   height: 46px; // Should match the header height
-  margin-bottom: 2rem;
+  margin-bottom: 32px;
   
   @media ${device.laptop} {
     height: 76px;
@@ -123,9 +119,9 @@ export const Header = ({ targetCount = TARGET_LETTER_COUNT }: HeaderProps) => {
     <>
       <HeaderContainer>
         <HeaderContent>
-          <Logo href="/">
+          <Logo href="/" area-label="Logo image as link to home page">
             <LogoIcon>
-              <Image src="/icons/logo.svg" alt="Logo" width={180} height={48} />
+              <Image src="/icons/logo.svg" alt="Logo image" width={180} height={48} />
             </LogoIcon>
           </Logo>
           
@@ -149,9 +145,9 @@ export const Header = ({ targetCount = TARGET_LETTER_COUNT }: HeaderProps) => {
               )}
             </ProgressContainer>
             
-            <Link href="/">
+            <Link href="/" aria-label="Home icon as link to home page">
               <HomeIcon>
-                <Image src="/icons/home.svg" alt="Home" width={18} height={18} />
+                <Image src="/icons/home.svg" alt="Home page icon" width={18} height={18} />
               </HomeIcon>
             </Link>
           </Nav>

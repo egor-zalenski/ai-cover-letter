@@ -13,6 +13,7 @@ import {
   CardContainer
 } from '@/ui/CardStyles'
 import { formatLongName } from '@/utils/longNames'
+import { MESSAGES } from '@/constants/strings'
 
 interface LetterCardProps {
   letter: CoverLetter
@@ -20,30 +21,29 @@ interface LetterCardProps {
 }
 
 // Letter card component
-const LetterCard = ({ letter, onDelete }: LetterCardProps) => {
+const LetterCard = ({ letter: { id, company, jobTitle, generatedText}, onDelete }: LetterCardProps) => {
   const handleDeleteConfirm = () => {
-    onDelete(letter.id)
+    onDelete(id)
   }
   
   return (
     <CardContainer>
       <StyledCardLink
-        href={buildRoute.generator(letter.id)}
-        aria-label={`Edit cover letter for ${letter.jobTitle} at ${letter.company}`}
+        href={buildRoute.generator(id)}
+        aria-label={`Edit cover letter for ${jobTitle} at ${company}`}
       >
         <PreviewContainer>
-          <LetterPreview overflowHidden content={formatLongName(letter.generatedText, 1_000)} />
+          <LetterPreview overflowHidden content={formatLongName(generatedText, 1_000)} />
         </PreviewContainer>
         
       </StyledCardLink>
       <CardFooter>
         <DeleteConfirm 
-          message={`Are you sure you want to delete this cover letter for ${letter.company}?`}
-          ariaLabel={`Delete cover letter for ${letter.company}`}
+          message={MESSAGES.CONFIRM_DELETE(company)}
+          ariaLabel={`Delete cover letter for ${company}`}
           onConfirm={handleDeleteConfirm}
         />
-        
-        <CopyButton text={letter.generatedText}/>
+        <CopyButton text={generatedText}/>
       </CardFooter>
       </CardContainer>
   )

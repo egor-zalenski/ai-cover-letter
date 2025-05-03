@@ -1,7 +1,6 @@
 import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
 
-
 export interface PageTitleState {
   title: string;
   // actions

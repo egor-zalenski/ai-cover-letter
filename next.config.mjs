@@ -7,18 +7,7 @@ const nextConfig = {
   skipTrailingSlashRedirect: true,
   // Ensure dynamic route segments are properly escaped in output
   compiler: {
-    styledComponents: {
-      displayName: true,
-      ssr: true,
-      topLevelImportPaths: [
-        '@emotion/styled',
-        '@emotion/styled-base',
-        'styled-components',
-        'styled-components/no-tags',
-        'styled-components/native',
-        'styled-components/primitives',
-      ],
-    },
+    styledComponents: true,
   },
   env: {
     NEXT_PUBLIC_OPENAI_API_KEY: process.env.NEXT_PUBLIC_OPENAI_API_KEY,

@@ -15,7 +15,7 @@ export interface LetterFields {
 }
 
 // Form data is all letter fields except generated text
-export type GenerateFormData = Omit<LetterFields, 'generatedText'>;
+export type GeneratorFormData = Omit<LetterFields, 'generatedText'>;
 
 // Complete letter includes metadata fields
 export interface CoverLetter extends LetterFields {

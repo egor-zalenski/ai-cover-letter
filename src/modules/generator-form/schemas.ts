@@ -1,12 +1,25 @@
 // Zod schemas for letter generation data validation
 import { z } from 'zod'
+import { VALIDATION_MESSAGES, VALIDATION_RULES } from '@/constants/validation';
 
 // Schema for letter form data
 export const letterFormSchema = z.object({
-  company: z.string().min(1, { message: "Company name is required" }),
-  jobTitle: z.string().min(1, { message: "Job title is required" }),
-  skillsList: z.string().optional(),
-  additionalDetails: z.string().optional(),
+  company:
+    z.string()
+      .min(1, { message: VALIDATION_MESSAGES.REQUIRED.COMPANY })
+      .max(VALIDATION_RULES.MAX_LENGTH.COMPANY, { message: VALIDATION_MESSAGES.MAX_LENGTH.COMPANY }),
+  jobTitle:
+    z.string()
+      .min(1, { message: VALIDATION_MESSAGES.REQUIRED.JOB_TITLE })
+      .max(VALIDATION_RULES.MAX_LENGTH.JOB_TITLE, { message: VALIDATION_MESSAGES.MAX_LENGTH.JOB_TITLE }),
+  skillsList:
+    z.string()
+      .min(1, { message: VALIDATION_MESSAGES.REQUIRED.SKILLS })
+      .max(VALIDATION_RULES.MAX_LENGTH.SKILLS, { message: VALIDATION_MESSAGES.MAX_LENGTH.SKILLS }),
+  additionalDetails:
+    z.string()
+      .max(VALIDATION_RULES.MAX_LENGTH.DETAILS, { message: VALIDATION_MESSAGES.MAX_LENGTH.DETAILS })
+      .optional(),
 })
 
 // Infer TypeScript types from Zod schemas

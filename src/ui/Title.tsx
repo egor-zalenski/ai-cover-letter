@@ -6,9 +6,9 @@ import { device } from '@/utils/device'
 
 const StyledPageTitle = styled.h1<{ $gray?: boolean }>`
   font-family: var(--font-fixel-display);
-  font-size: 2.5rem;
+  font-size: 40px;
   font-weight: 600;
-  color: ${props => props.$gray ? 'var(--text-gray)' : '#000'};
+  color: ${props => props.$gray ? 'var(--text-gray)' : 'var(--text-black)'};
   padding-bottom: 12px;
   max-width: 100%;
   text-overflow: ellipsis;

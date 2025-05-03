@@ -2,30 +2,15 @@
 
 import { ReactNode } from 'react'
 import styled from 'styled-components'
+import type { DeepValue } from '@tanstack/react-form'
 import { Input } from '@/ui/Input'
 import { TextArea } from '@/ui/TextArea'
 import { DEFAULT_TEXTAREA_MAX_LENGTH } from '@/constants/app'
-import { Maybe } from '@/interfaces/types'
 import { FormContainer, FormGroup, Label } from '@/ui/Form'
-
-// Define the form field structure
-export interface FormField<T> {
-  id: keyof T;
-  label: string;
-  placeholder: string;
-  required?: boolean;
-  inputType?: 'text' | 'textarea';
-  rows?: number;
-  maxLength?: number;
-  fullWidth?: boolean;
-  validate?: (input: Record<'value', string>) => Maybe<string>;
-  autoFocus?: boolean
-}
-
-export type ValidatorsFormData<T> = Record<Partial<keyof T>, (input: Record<'value', string>) => Maybe<string>>;
+import { FormField, FormType, ValidatorsFormData } from '@/interfaces/forms'
 
 export interface FormRendererProps<T> {
-  form: any; // Use any to bypass strict typing issues
+  form: FormType<T>;
   formFields: FormField<T>[];
   validators: ValidatorsFormData<T>
 }
@@ -120,22 +105,20 @@ export function FormRenderer<T>({
       {formFields.map((field) => (
         <form.Field
           key={field.id as string}
-          name={field.id as any}
+          name={field.id as string}
           validators={{
-            onBlur: validators[field.id],
+            onChange: (props) => validators[field.id]?.({ value: props.value as string }),
           }}
           
         >
-          {(fieldProps: any) => {
-
+          {(fieldProps) => {
             const error = fieldProps.state.meta.errors?.[0]
-
             return renderField(
               field,
               <FormFieldInput
                 id={field.id as string}
-                value={fieldProps.state.value}
-                handleChange={fieldProps.handleChange}
+                value={fieldProps.state.value as string}
+                handleChange={(value: string) => fieldProps.handleChange(value as DeepValue<T, string>)}
                 handleBlur={fieldProps.handleBlur}
                 error={error}
                 placeholder={field.placeholder}

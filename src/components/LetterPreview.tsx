@@ -10,6 +10,7 @@ export const PreviewContainer = styled.div<{$overflowHidden?: boolean}>`
   display: flex;
   flex-grow: 1;
   font-size: 18px;
+  line-height: 28px;
   font-weight: 400;
 
   overflow: ${props => props.$overflowHidden ? 'hidden' : 'auto'};

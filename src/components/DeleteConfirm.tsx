@@ -1,11 +1,11 @@
 'use client'
 
 import { useCallback } from 'react'
+import { styled } from 'styled-components'
 import { EmptyButton } from '@/ui/Button'
 import { Icon } from '@/ui/Icon'
 import { IconName } from '@/constants/icons'
 import { SIZES } from '@/constants/app'
-import { styled } from 'styled-components'
 import { UI_TEXT, DELETE_CONFIRM } from '@/constants/strings'
 
 interface DeleteConfirmProps {

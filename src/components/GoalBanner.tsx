@@ -12,7 +12,7 @@ const BannerContainer = styled.div`
   background-color: var(--secondary-light);
   border-radius: 12px;
   padding: 54px 64px;
-  margin: 2.5rem 0;
+  margin: 40px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,25 +20,25 @@ const BannerContainer = styled.div`
 `
 
 const BannerTitle = styled.h3`
-  font-size: 2rem;
+  font-size: 32px;
   font-weight: 600;
-  color: #1a1a1a;
-  margin: 0 0 1rem;
+  color: var(--text-black);
+  margin: 0 0 16px;
 `
 
 const BannerDescription = styled.p`
   color: var(--text-gray);
   max-width: 480px;
   line-height: 28px;
-  font-size: 1.125rem;
+  font-size: 18px;
   margin-bottom: 16px;
-  max-width: 600px;
+  /* max-width: 600px; */
 `
 
 const ProgressText = styled.div`
-  font-size: 1rem;
+  font-size: 16px;
   color: var(--text-gray);
-  margin-top: 0.5rem;
+  margin-top: 8px;
 `
 
 // Goal banner component

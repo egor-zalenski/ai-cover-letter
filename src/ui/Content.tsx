@@ -10,7 +10,10 @@ export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
 
+  margin-top: 24px;
+
   @media ${device.laptop} {
+    margin-top: 0px;
     height: 600px;
   }
 `

@@ -4,15 +4,16 @@
  * It serves as a bridge between UI components and the letterStore
  */
 
-import { useLetterStore, type GenerateFormData, type CoverLetter, type LetterFields } from '@/stores/letterStore'
+import { useLetterStore } from '@/stores/letterStore'
+import type { GeneratorFormData, CoverLetter, LetterFields } from '@/stores/letterStore'
 import { notificationsService } from '@/services/notifications'
+import { Maybe, Nullable } from '@/interfaces/types'
 import { 
   validateLetterForm, 
   formatValidationErrors,
   letterFormSchema,
 } from './schemas'
 import { ValidationErrors } from './types'
-import { Maybe, Nullable } from '@/interfaces/types'
 
 // Validate letter form data with different output formats
 export const validateLetter = {
@@ -28,7 +29,7 @@ export const validateLetter = {
   },
 
   // Get a single error message from form validation
-  getErrorMessage(formData: GenerateFormData): Maybe<string> {
+  getErrorMessage(formData: GeneratorFormData): Maybe<string> {
     try {
       letterFormSchema.parse(formData)
       return undefined
@@ -58,7 +59,7 @@ export const letterOperations = {
   },
 
   // Create a new letter from form data and content
-  createLetter(formData: GenerateFormData, generatedContent: string): CoverLetter {
+  createLetter(formData: GeneratorFormData, generatedContent: string): CoverLetter {
     const letterContent: LetterFields = {
       ...structuredClone(formData),
       generatedText: generatedContent,
@@ -69,7 +70,7 @@ export const letterOperations = {
   },
 
   // Update an existing letter with new data
-  updateLetter(letterId: string, formData: GenerateFormData, generatedContent: string): Nullable<CoverLetter> {
+  updateLetter(letterId: string, formData: GeneratorFormData, generatedContent: string): Nullable<CoverLetter> {
     const letterContent: LetterFields = {
       ...structuredClone(formData),
       generatedText: generatedContent,
@@ -82,7 +83,7 @@ export const letterOperations = {
 
   // Generate a cover letter with AI content
   generateWithAI(
-    formData: GenerateFormData, 
+    formData: GeneratorFormData, 
     generatedContent: string, 
     existingLetterId?: string
   ): Nullable<CoverLetter> {

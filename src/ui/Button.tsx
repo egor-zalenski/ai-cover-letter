@@ -39,7 +39,6 @@ export const StyledButton = styled.button<{
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-gap);
   font-weight: var(--font-weight-medium);
   padding: var(--spacing-md) var(--spacing-lg);
   border-radius: var(--border-radius-sm);
@@ -102,11 +101,11 @@ export const ActionButton = styled(Button)<{$isWhite?: boolean}>`
 export const EmptyButton = styled(Button)`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
   color: var(--text-button-gray);
   background: none;
   border: none;
   cursor: pointer;
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 16px;
 `

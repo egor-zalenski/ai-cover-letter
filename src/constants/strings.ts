@@ -90,6 +90,7 @@ export const MESSAGES = {
   LOADING: {
     AI: 'AI is crafting your personalized cover letter...',
   },
+  CONFIRM_DELETE: (company: string) => `Are you sure you want to delete this cover letter for ${company}?`
 }
 
 // Meta description

@@ -19,7 +19,7 @@ const StyledInput = styled.input<{ $hasError?: boolean }>`
   display: block;
   width: 100%;
   padding: 8px 12px;
-  font-size: 1rem;
+  font-size: 16px;
   line-height: 1.5;
   color: var(--text-black);
   background-color: var(--background);

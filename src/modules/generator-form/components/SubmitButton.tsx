@@ -1,14 +1,14 @@
 import React, { ReactNode } from 'react'
-import { GenerateFormData } from '@/stores/letterStore'
+import { GeneratorFormData } from '@/stores/letterStore'
 import { ActionButton } from '@/ui/Button'
 import { IconName } from '@/constants/icons'
 import { Icon } from '@/ui/Icon'
 import { SIZES } from '@/constants/app'
 import { BUTTON_LABELS } from '@/constants/strings'
-import { FormStateType, FormType } from '../types'
+import { FormType, FormStateType } from '@/interfaces/forms'
 
 interface SubmitButtonProps {
-  form: FormType
+  form: FormType<GeneratorFormData>
   isGenerated: boolean
   isLoading: boolean
 }
@@ -33,12 +33,12 @@ const getSubmitButtonContent = (isLoading: boolean, isGenerated: boolean): React
 // Submit button component
 export const SubmitButton = ({ form, isGenerated, isLoading }: SubmitButtonProps) => { 
   const hasErrors = Object.values(form.state.errors).some(error => error !== undefined)
-  const requiredFields: Array<keyof GenerateFormData> = ['company', 'jobTitle', 'skillsList']
+  const requiredFields: Array<keyof GeneratorFormData> = ['company', 'jobTitle', 'skillsList']
   const content = getSubmitButtonContent(isLoading, isGenerated)
 
   return (
     <form.Subscribe
-      selector={(formState: FormStateType) => {
+      selector={(formState: FormStateType<GeneratorFormData>) => {
         const requiredFieldsComplete = requiredFields?.map((field) =>
           formState.fieldMeta[field]?.isTouched && formState.fieldMeta[field]?.isDirty
         )
