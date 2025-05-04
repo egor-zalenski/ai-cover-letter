@@ -125,6 +125,7 @@ export function FormRenderer<T>({
                 required={field.required}
                 rows={field.rows}
                 inputType={field.inputType}
+                autoFocus={field.autoFocus}
               />,
             )
           }}
