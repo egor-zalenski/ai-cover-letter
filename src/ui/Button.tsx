@@ -101,7 +101,7 @@ export const ActionButton = styled(Button)<{$isWhite?: boolean}>`
 export const EmptyButton = styled(Button)`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   color: var(--text-button-gray);
   background: none;
   border: none;

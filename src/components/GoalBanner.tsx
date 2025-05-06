@@ -2,17 +2,17 @@
 
 import styled from 'styled-components'
 import { memo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { CreateButton } from '@/ui/CreateButton'
 import { TARGET_LETTER_COUNT } from '@/constants/app'
 import { useLetterStore } from '@/stores/letterStore'
 import { ProgressSquares, ProgressSquare } from '@/ui/Progress'
-import { GOAL } from '@/constants/strings'
 
 const BannerContainer = styled.div`
   background-color: var(--secondary-light);
   border-radius: 12px;
-  padding: 54px 64px;
-  margin: 40px 0;
+  padding: 55.5px 64px;
+  margin: 48px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,10 +20,12 @@ const BannerContainer = styled.div`
 `
 
 const BannerTitle = styled.h3`
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 600;
   color: var(--text-black);
-  margin: 0 0 16px;
+  font-family: var(--font-fixel-display);
+  margin: 0 0 15.5px;
+  letter-spacing: -0.7px;
 `
 
 const BannerDescription = styled.p`
@@ -32,17 +34,18 @@ const BannerDescription = styled.p`
   line-height: 28px;
   font-size: 18px;
   margin-bottom: 16px;
-  /* max-width: 600px; */
 `
 
 const ProgressText = styled.div`
-  font-size: 16px;
+  font-size: 18px;
   color: var(--text-gray);
   margin-top: 8px;
+  line-height: 28px;
 `
 
 // Goal banner component
 export const GoalBanner = memo(() => {
+  const { t } = useTranslation()
   const { letters } = useLetterStore()
   const letterCount = letters.length
 
@@ -52,9 +55,9 @@ export const GoalBanner = memo(() => {
   
   return (
     <BannerContainer>
-      <BannerTitle>{GOAL.TITLE}</BannerTitle>
+      <BannerTitle>{t('goal.title')}</BannerTitle>
       <BannerDescription>
-        {GOAL.DESCRIPTION}
+        {t('goal.description')}
       </BannerDescription>
       <CreateButton />
 
@@ -63,7 +66,7 @@ export const GoalBanner = memo(() => {
           <ProgressSquare key={i} $active={i < letterCount} />
         ))}
       </ProgressSquares>
-      <ProgressText>{GOAL.PROGRESS(letterCount, TARGET_LETTER_COUNT)}</ProgressText>
+      <ProgressText>{t('goal.progress', { current: letterCount, target: TARGET_LETTER_COUNT })}</ProgressText>
       
     </BannerContainer>
   )

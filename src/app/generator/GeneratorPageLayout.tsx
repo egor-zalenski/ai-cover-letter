@@ -9,7 +9,7 @@ import { GeneratorFormProps } from '@/modules/generator-form/types'
 import { OpenAIResult } from '@/modules/openai-result/OpenAIResult'
 import { GoalBanner } from '@/components/GoalBanner'
 import { usePageTitleStore } from '@/stores/pageTitleStore'
-import { PAGE_TITLES } from '@/constants/strings'
+import { PAGE_TITLES } from '@/constants/metadata'
 import { Separator } from '@/ui/Separator'
 
 /**
@@ -38,7 +38,7 @@ export function GeneratorPageLayout({ existingLetter }: GeneratorFormProps) {
         <FlexRow>
           <FlexColumn>
             <PageTitle />
-            <Separator />
+            <Separator $small />
             <GeneratorForm existingLetter={existingLetter} />
           </FlexColumn>
           <FlexColumn>

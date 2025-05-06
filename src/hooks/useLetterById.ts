@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
-import { CoverLetter, useLetterStore } from '@/stores/letterStore'
-import { Maybe, Nullable } from '@/interfaces/types'
+import { useEffect, useMemo, useState } from 'react'
+import { useLetterStore } from '@/stores/letterStore'
+import { Maybe } from '@/interfaces/types'
 
 
 /**
@@ -10,34 +10,20 @@ import { Maybe, Nullable } from '@/interfaces/types'
  * @returns Object containing the letter, loading state, and not found state
  */
 export function useLetterById(id: Maybe<string>) {
-  const [letter, setLetter] = useState<Nullable<CoverLetter>>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [notFound, setNotFound] = useState<boolean>(false)
+  const [isMounted, setIsMounted] = useState<boolean>(false)
   const { letters } = useLetterStore()
 
   useEffect(() => {
-    // Set initial loading state
-    setIsLoading(true)
-    
-    if (!id) {
-      setIsLoading(false)
-      setNotFound(true)
-      return
-    }
-    
-    const foundLetter = letters.find(letter => letter.id === id)
-    
-    if (foundLetter) {
-      setLetter(foundLetter)
-      setNotFound(false)
-      
-    } else {
-      setLetter(null)
-      setNotFound(true)
-    }
-    
-    setIsLoading(false)
-  }, [id, letters])
+    setIsMounted(true)
+  }, [])
 
-  return { letter, isLoading, notFound }
+  return useMemo(() => {
+    if (!isMounted) return { isLoading: true, notFound: true, letter: null }
+    
+    if (!id) return { isLoading: false, notFound: true, letter: null }
+    
+    const letter = letters.find(letter => letter.id === id)
+  
+    return { isLoading: false, notFound: !letter, letter }
+  }, [id, letters, isMounted])
 } 

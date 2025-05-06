@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { GeneratorFormData } from '@/stores/letterStore'
 import { ActionButton } from '@/ui/Button'
 import { IconName } from '@/constants/icons'
 import { Icon } from '@/ui/Icon'
 import { SIZES } from '@/constants/app'
-import { BUTTON_LABELS } from '@/constants/strings'
 import { FormType, FormStateType } from '@/interfaces/forms'
 
 interface SubmitButtonProps {
@@ -13,7 +13,7 @@ interface SubmitButtonProps {
   isLoading: boolean
 }
 
-const getSubmitButtonContent = (isLoading: boolean, isGenerated: boolean): ReactNode => {
+const getSubmitButtonContent = (isLoading: boolean, isGenerated: boolean, t: (key: string) => string): ReactNode => {
   if (isLoading) {
     return <Icon name={IconName.LOADING_BUTTON} size={SIZES.ICON_SIZE.MEDIUM} />
   }
@@ -22,19 +22,20 @@ const getSubmitButtonContent = (isLoading: boolean, isGenerated: boolean): React
     return (
       <>
         <Icon name={IconName.REPEAT} size={SIZES.ICON_SIZE.MEDIUM} />
-        {BUTTON_LABELS.UPDATE}
+        {t('ui.button.update')}
       </>
     )
   }
 
-  return BUTTON_LABELS.GENERATE
+  return t('ui.button.generate')
 }
 
 // Submit button component
 export const SubmitButton = ({ form, isGenerated, isLoading }: SubmitButtonProps) => { 
+  const { t } = useTranslation()
   const hasErrors = Object.values(form.state.errors).some(error => error !== undefined)
   const requiredFields: Array<keyof GeneratorFormData> = ['company', 'jobTitle', 'skillsList']
-  const content = getSubmitButtonContent(isLoading, isGenerated)
+  const content = getSubmitButtonContent(isLoading, isGenerated, t)
 
   return (
     <form.Subscribe

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useField } from '@tanstack/react-form'
-import { PAGE_TITLES } from '@/constants/strings'
+import { PAGE_TITLES } from '@/constants/metadata'
 import { usePageTitleStore } from '@/stores/pageTitleStore'
 import { formatLongName } from '@/utils/longNames'
 import { GeneratorFormData } from '@/stores/letterStore'

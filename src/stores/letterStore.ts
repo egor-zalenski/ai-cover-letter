@@ -32,7 +32,6 @@ export interface CoverLetterState {
   addLetter: (letter: Omit<CoverLetter, 'id' | 'createdAt'>) => CoverLetter;
   updateLetter: (id: string, updatedLetter: Partial<Omit<CoverLetter, 'id' | 'createdAt'>>) => CoverLetter;
   removeLetter: (id: string) => void;
-  getLetterById: (id: string) => Maybe<CoverLetter>;
 }
 
 export const useLetterStore = create<CoverLetterState>()(
@@ -87,8 +86,6 @@ export const useLetterStore = create<CoverLetterState>()(
           return updatedLetter;
         },
 
-        getLetterById: (letterId) => get().letters.find(({id}) => letterId === id),
-        
         removeLetter: (id) => {
           set((state) => {
             state.letters = state.letters.filter((letter: CoverLetter) => letter.id !== id)

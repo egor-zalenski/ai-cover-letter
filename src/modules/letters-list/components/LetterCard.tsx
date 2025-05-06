@@ -1,6 +1,7 @@
 'use client'
 
 import { memo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { CoverLetter } from '@/stores/letterStore'
 import { buildRoute } from '@/constants/routes'
 import LetterPreview from '@/components/LetterPreview'
@@ -13,7 +14,6 @@ import {
   CardContainer
 } from '@/ui/CardStyles'
 import { formatLongName } from '@/utils/longNames'
-import { MESSAGES } from '@/constants/strings'
 
 interface LetterCardProps {
   letter: CoverLetter
@@ -22,6 +22,8 @@ interface LetterCardProps {
 
 // Letter card component
 const LetterCard = ({ letter: { id, company, jobTitle, generatedText}, onDelete }: LetterCardProps) => {
+  const { t } = useTranslation()
+  
   const handleDeleteConfirm = () => {
     onDelete(id)
   }
@@ -35,17 +37,16 @@ const LetterCard = ({ letter: { id, company, jobTitle, generatedText}, onDelete 
         <PreviewContainer>
           <LetterPreview overflowHidden content={formatLongName(generatedText, 1_000)} />
         </PreviewContainer>
-        
       </StyledCardLink>
       <CardFooter>
         <DeleteConfirm 
-          message={MESSAGES.CONFIRM_DELETE(company)}
+          message={t('delete.confirm.letter', { company })}
           ariaLabel={`Delete cover letter for ${company}`}
           onConfirm={handleDeleteConfirm}
         />
         <CopyButton text={generatedText}/>
       </CardFooter>
-      </CardContainer>
+    </CardContainer>
   )
 }
 

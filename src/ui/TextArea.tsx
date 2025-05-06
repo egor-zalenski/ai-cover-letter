@@ -18,7 +18,7 @@ const TextAreaContainer = styled.div<{ $fullWidth?: boolean }>`
 const StyledTextArea = styled.textarea<{ $hasError?: boolean }>`
   display: block;
   width: 100%;
-  padding: 8px 12px;
+  padding: 12px;
   height: 236px;
   font-size: 16px;
   line-height: 1.5;

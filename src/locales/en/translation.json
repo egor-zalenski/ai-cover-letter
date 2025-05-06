@@ -1,0 +1,62 @@
+{
+  "ui": {
+    "button": {
+      "copy": "Copy to clipboard",
+      "delete": "Delete",
+      "generate": "Generate Now",
+      "update": "Try again",
+      "create": "Create New"
+    }
+  },
+  "delete": {
+    "confirm": {
+      "default": "Are you sure you want to delete this item?",
+      "ariaLabel": "Delete item",
+      "letter": "Are you sure you want to delete this cover letter for {{company}}?"
+    }
+  },
+  "page": {
+    "titles": {
+      "main": "Applications",
+      "create": "New Application"
+    }
+  },
+  "goal": {
+    "title": "Hit your goal",
+    "description": "Generate and send out couple more job applications today to get hired faster",
+    "progress": "{{current}} out of {{target}}"
+  },
+  "form": {
+    "labels": {
+      "jobTitle": "Job title",
+      "company": "Company",
+      "skills": "I am good at...",
+      "additionalDetails": "Additional details"
+    },
+    "placeholders": {
+      "letterPreview": "Your personalized job application will appear here...",
+      "jobTitle": "Product manager",
+      "company": "Apple",
+      "skills": "HTML, CSS and doing things in time",
+      "additionalDetails": "Describe why you are a great fit or paste your bio"
+    }
+  },
+  "messages": {
+    "success": {
+      "generation": "Cover letter for {{company}} generated successfully!"
+    },
+    "error": {
+      "default": "Failed to generate cover letter",
+      "apiKey": "OpenAI API key is missing.",
+      "noContent": "No content received from OpenAI",
+      "rateLimit": "Rate limit exceeded. Please try again later.",
+      "invalidApiKey": "Invalid API key. Please check your API key and try again."
+    },
+    "loading": {
+      "ai": "AI is crafting your personalized cover letter..."
+    }
+  },
+  "meta": {
+    "description": "Generate personalized cover letters for job applications"
+  }
+} 

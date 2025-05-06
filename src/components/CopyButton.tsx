@@ -2,11 +2,11 @@
 
 import React from 'react'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 import { useClipboard } from '@/hooks/useClipboard'
 import { Icon } from '@/ui/Icon'
 import { IconName } from '@/constants/icons'
 import { SIZES } from '@/constants/app'
-import { UI_TEXT } from '@/constants/strings'
 import { EmptyButton } from '@/ui/Button'
 
 interface CopyButtonProps {
@@ -27,6 +27,7 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
   className, 
   resetDelay = 2_000,
 }) => {
+  const { t } = useTranslation()
   const { isCopied, copyToClipboard } = useClipboard()
   
   const handleCopy = (e: React.MouseEvent) => {
@@ -44,7 +45,7 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
         className={className}
         aria-label="Copy content to clipboard"
       >
-        {UI_TEXT.BUTTON_COPY}
+        {t('ui.button.copy')}
         <Icon name={isCopied ? IconName.SUCCESS : IconName.COPY} size={SIZES.ICON_SIZE.MEDIUM} />
       </EmptyButton>
     </CopyButtonContainer>

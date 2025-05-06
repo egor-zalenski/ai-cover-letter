@@ -36,7 +36,7 @@ export const CardContainer = styled.div`
 export const PreviewContainer = styled.div`
   padding-top: 24px;
   padding: 24px 24px 0;
-  height: 194px;
+  height: 186px;
   position: relative;
   overflow: hidden;
   
@@ -55,7 +55,7 @@ export const PreviewContainer = styled.div`
 
 // Container for actions at the bottom of the card
 export const CardFooter = styled.div`
-  padding: 5px 24px 16px;
+  padding: 5px 24px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
