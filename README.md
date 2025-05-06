@@ -57,18 +57,17 @@ A modern web application that helps job seekers generate personalized cover lett
 ```
 src/
 ├── app/                  # Next.js app router pages
-├── components/           # Reusable UI components
-├── constants/            # Application constants and strings
-├── hooks/                # Custom React hooks
+├── components/           # Shared reusable UI components
+├── constants/            # Shared application constants and strings
+├── hooks/                # Shared custom React hooks
 ├── interfaces/           # TypeScript interfaces
 ├── modules/              # Feature modules
 │   ├── generator-form/   # Cover letter generation form
 │   ├── letters-list/     # List of generated letters
 │   └── openai-result/    # OpenAI API result display
-├── services/             # API services
-├── stores/               # Zustand state stores
-├── ui/                   # UI components and layouts
-└── utils/                # Utility functions
+├── stores/               # Shared Zustand state stores
+├── ui/                   # Shared UI components and layouts
+└── utils/                # Shared utility functions
 ```
 
 ## Usage
