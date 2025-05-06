@@ -6,7 +6,7 @@
 
 import { useLetterStore } from '@/stores/letterStore'
 import type { GeneratorFormData, CoverLetter, LetterFields } from '@/stores/letterStore'
-import { notificationsService } from '@/services/notifications'
+import { showNotificationError } from '@/utils/notifications'
 import { Maybe, Nullable } from '@/interfaces/types'
 import { 
   validateLetterForm, 
@@ -55,7 +55,7 @@ export const letterOperations = {
   // Handle error with notification and loading state reset
   handleError(errorMessage: string): void {
     this.setLoading(false)
-    notificationsService.showError(errorMessage)
+    showNotificationError(errorMessage)
   },
 
   // Create a new letter from form data and content

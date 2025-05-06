@@ -8,7 +8,7 @@ export const PageContainer = styled.div`
   padding: 16px;
   
   @media ${device.laptop} {
-    padding: 0px;
+    padding: 0 0 16px;
   }
 `
 

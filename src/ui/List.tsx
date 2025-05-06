@@ -4,7 +4,7 @@ import styled from 'styled-components'
 // Container for a list of items
 export const ListContainer = styled.div`
   gap: 16px;
-  margin: 16px 0;
+  margin: 24px 0 16px;
 
   display: grid;
   grid-template-columns: 1fr; 

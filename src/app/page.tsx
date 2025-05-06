@@ -7,7 +7,7 @@ import { PageTitle } from '@/ui/Title'
 import { LettersList } from '@/modules/letters-list/LettersList'
 import { GoalBanner } from '@/components/GoalBanner'
 import { usePageTitleStore } from '@/stores/pageTitleStore'
-import { PAGE_TITLES } from '@/constants/strings'
+import { PAGE_TITLES } from '@/constants/metadata'
 import { CreateButton } from '@/ui/CreateButton'
 import { Separator } from '@/ui/Separator'
 
@@ -28,7 +28,7 @@ export default function HomePage() {
     <>
       <Header />
       <PageContainer>
-        <PageTitle>
+        <PageTitle homePage>
           <CreateButton small/>
         </PageTitle>
         <Separator />

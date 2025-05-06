@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import { PropsWithChildren } from 'react'
-import { PAGE_TITLES, META } from '@/constants/strings'
+import { PAGE_TITLES, META } from '@/constants/metadata'
 import { ClientLayout } from './client-layout'
 import { fixelDisplay, fixelText } from './fonts'
 import '../globals.css'
+import '../i18n'
 
 
 export const metadata: Metadata = {
@@ -16,7 +17,6 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <html lang="en">
       <body 
         className={`${fixelDisplay.variable} ${fixelText.variable}`} 
-        data-theme="light" 
         suppressHydrationWarning
       >
         <ClientLayout>

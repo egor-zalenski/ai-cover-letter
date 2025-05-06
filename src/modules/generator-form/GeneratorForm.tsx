@@ -6,27 +6,27 @@ import { useForm } from '@tanstack/react-form'
 import { useOpenAIMutation } from '@/hooks/useOpenAI'
 import { GeneratorFormData, useLetterStore } from '@/stores/letterStore'
 import { letterOperations } from '@/modules/generator-form/operations'
-import { notificationsService } from '@/services/notifications'
-import { GENERATE_COVER_LETTER_PROMPT } from '@/constants/strings'
+import { showNotificationError } from '@/utils/notifications'
 import { FormRenderer } from '@/components/FormRenderer'
 import { buildRoute } from '@/constants/routes'
 import { FormField, ValidatorsFormData } from '@/interfaces/forms'
 import { GeneratorFormProps } from './types'
-import { COVER_LETTER_FORM_FIELDS } from './constants/form-fields'
+import { useFormFields } from './hooks/useFormFields'
 import { useFormTitle } from './hooks/useFormTitle'
+import { GENERATE_COVER_LETTER_PROMPT } from './constants'
 import { SubmitButton } from './components/SubmitButton'
 
 export function GeneratorForm({ existingLetter }: GeneratorFormProps) {
-  // Get form field configuration
-  const formFields = COVER_LETTER_FORM_FIELDS
   
   // Hooks
   const router = useRouter()
+  // Get form field configuration
+  const formFields = useFormFields()
   const { isLoading, setLoading } = useLetterStore()
   const openAIMutation = useOpenAIMutation({
     onSuccess: (content) => handleGenerateLetter(content),
     onError: (error) => {
-      notificationsService.showError(`Failed to generate letter: ${error.message}`)
+      showNotificationError(`Failed to generate letter: ${error.message}`)
     },
     onMutate: () => setLoading(true),
     onSettled: () => setTimeout(() => setLoading(false), 2_000), // Emulate long response

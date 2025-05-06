@@ -1,14 +1,17 @@
 import styled from 'styled-components'
-import { usePageTitleStore } from '@/stores/pageTitleStore'
 import { PropsWithChildren } from 'react'
-import { PAGE_TITLES } from '@/constants/strings'
+import { usePageTitleStore } from '@/stores/pageTitleStore'
 import { device } from '@/utils/device'
+import { PAGE_TITLES } from '@/constants/metadata'
 
-const StyledPageTitle = styled.h1<{ $gray?: boolean }>`
+const StyledPageTitle = styled.h1<{ $gray?: boolean, $big?: boolean }>`
   font-family: var(--font-fixel-display);
-  font-size: 40px;
   font-weight: 600;
   color: ${props => props.$gray ? 'var(--text-gray)' : 'var(--text-black)'};
+  font-size: ${props => props.$big ? '48px' : '36px'};
+  letter-spacing: ${props => props.$big ? '-1px' : '-0.7px'};
+  margin-top: ${props => props.$big ? '0' : '3px'};
+  line-height: ${props => props.$big ? 'default' : '36px'};
   padding-bottom: 12px;
   max-width: 100%;
   text-overflow: ellipsis;
@@ -17,7 +20,9 @@ const StyledPageTitle = styled.h1<{ $gray?: boolean }>`
   flex: 0 1 auto;
   min-width: 0;
 
-  @media ${device.mobileL} {
+  padding-top: 28px;
+  @media ${device.tablet} {
+    padding-top: 0;
     padding-bottom: 0;
   }
 `
@@ -26,7 +31,6 @@ const TitleContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 12px;
   flex-direction: column;
   width: 100%;
   max-width: 100%;
@@ -44,13 +48,20 @@ const TitleWrapper = styled.div`
   overflow: hidden;
 `
 
-export const PageTitle = ({ children }: PropsWithChildren) => {
-  const { title } = usePageTitleStore()
+interface PageTitleProps extends PropsWithChildren {
+  homePage?: boolean
+}
 
-  return <TitleContainer>
-    <TitleWrapper>
-      <StyledPageTitle $gray={title === PAGE_TITLES.CREATE}>{title}</StyledPageTitle>
-    </TitleWrapper>
-    {children}
-  </TitleContainer>
+export const PageTitle = ({ children, homePage }: PageTitleProps) => {
+  const { title } = usePageTitleStore()
+  const isGray = title === PAGE_TITLES.CREATE
+
+  return (
+    <TitleContainer>
+      <TitleWrapper>
+        <StyledPageTitle $gray={isGray} $big={homePage}>{title}</StyledPageTitle>
+      </TitleWrapper>
+      {children}
+    </TitleContainer>
+  )
 }

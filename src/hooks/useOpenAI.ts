@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { generateMessage, OpenAIPromptParams } from '@/services/openai'
+import { generateMessage, OpenAIPromptParams } from '@/app/api/ai/actions'
 import { OPENAI_CONFIG } from '@/constants/ai'
 
 interface UseOpenAIMutationParams {

@@ -1,11 +1,11 @@
+'use server'
+
 import OpenAI from 'openai'
-import { MESSAGES } from '@/constants/strings'
 import { OPENAI_CONFIG } from '@/constants/ai'
 
 // Initialize OpenAI client
 const openai = new OpenAI({
-  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY || '',
-  dangerouslyAllowBrowser: true, // For client-side use
+  apiKey: process.env.OPENAI_API_KEY || '',
 })
 
 export interface OpenAIPromptParams {
@@ -25,7 +25,7 @@ export async function generateMessage(params: OpenAIPromptParams): Promise<strin
   } = params
   
   if (!openai.apiKey) {
-    const errorMessage = MESSAGES.ERROR.API_KEY
+    const errorMessage = 'OpenAI API key is missing.'
     throw new Error(errorMessage)
   }
   
@@ -42,9 +42,9 @@ export async function generateMessage(params: OpenAIPromptParams): Promise<strin
   })
   
   if (!response.choices?.[0]?.message?.content) {
-    const errorMessage = MESSAGES.ERROR.NO_CONTENT
+    const errorMessage = 'No content received from OpenAI'
     throw new Error(errorMessage)
   }
   
   return response.choices?.[0]?.message?.content?.trim()
-}
+} 

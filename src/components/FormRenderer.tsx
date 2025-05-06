@@ -18,8 +18,9 @@ export interface FormRendererProps<T> {
 interface FieldRenderProps {
   id: string;
   value: string;
-  handleChange: (value: string) => void;
-  handleBlur: () => void;
+  name: string;
+  onChange: (value: string) => void;
+  onBlur: () => void;
   error?: string;
   placeholder?: string;
   required?: boolean;
@@ -30,31 +31,21 @@ interface FieldRenderProps {
 }
 
 // Extract field rendering to separate component
-const FormFieldInput = ({
-  id,
-  value,
-  handleChange,
-  handleBlur,
-  error,
-  placeholder,
-  required,
-  rows,
-  autoFocus,
-  maxLength = DEFAULT_TEXTAREA_MAX_LENGTH,
-  inputType
-}: FieldRenderProps) => {
+const FormFieldInput = (props: FieldRenderProps) => {
+  const {
+    value,
+    onChange,
+    error,
+    maxLength = DEFAULT_TEXTAREA_MAX_LENGTH,
+    inputType
+  } = props
+
   if (inputType === 'textarea') {
     return (
       <>
         <TextArea
-          id={id}
-          name={id}
-          value={value}
-          onChange={(e) => handleChange(e.target.value)}
-          onBlur={handleBlur}
-          error={error}
-          rows={rows}
-          placeholder={placeholder}
+          {...props}
+          onChange={(e) => onChange(e.target.value)}
         />
         {!!maxLength && <CharCounter $hasError={!!error}>{`${value?.length || 0}/${maxLength}`}</CharCounter>}
       </>
@@ -63,15 +54,8 @@ const FormFieldInput = ({
 
   return (
     <Input
-      id={id}
-      name={id}
-      value={value}
-      onChange={(e) => handleChange(e.target.value)}
-      onBlur={handleBlur}
-      placeholder={placeholder}
-      error={error}
-      required={required}
-      autoFocus={autoFocus}
+      {...props}
+      onChange={(e) => onChange(e.target.value)}
     />
   )
 }
@@ -117,9 +101,10 @@ export function FormRenderer<T>({
               field,
               <FormFieldInput
                 id={field.id as string}
+                name={field.id as string}
                 value={fieldProps.state.value as string}
-                handleChange={(value: string) => fieldProps.handleChange(value as DeepValue<T, string>)}
-                handleBlur={fieldProps.handleBlur}
+                onChange={(value: string) => fieldProps.handleChange(value as DeepValue<T, string>)}
+                onBlur={fieldProps.handleBlur}
                 error={error}
                 placeholder={field.placeholder}
                 required={field.required}

@@ -45,16 +45,15 @@ export const HomeIcon = styled.div`
 
 
 export const HeaderContainer = styled.header`
-  padding: 32px 0 16px;
+  padding: 30px 0 16px;
   margin-bottom: 16px;
   position: fixed;
-  background-color: white;
+  background-color: var(--background);
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
   z-index: 100;
-  padding: 16px;
 `
 
 export const HeaderContent = styled.div`
@@ -106,7 +105,7 @@ export const HeaderSpacer = styled.div`
   margin-bottom: 32px;
   
   @media ${device.laptop} {
-    height: 76px;
+    height: 80px;
   }
 ` 
 
@@ -141,7 +140,7 @@ export const Header = ({ targetCount = TARGET_LETTER_COUNT }: HeaderProps) => {
                 </ProgressDots>
               )}
               {isCompleted && (
-                <Icon name={IconName.SUCCESS} size={SIZES.ICON_SIZE.MEDIUM} />
+                <Icon name={IconName.SUCCESS} size={SIZES.ICON_SIZE.LARGE} />
               )}
             </ProgressContainer>
             

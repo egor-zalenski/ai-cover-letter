@@ -4,9 +4,10 @@ import styled from 'styled-components'
 export const ProgressContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   color: var(--text-gray);
-  font-size: 14px;
+  font-size: 18px;
+  padding-top: 2px;
 `
 
 export const ProgressText = styled.span`
@@ -20,11 +21,12 @@ export const ProgressText = styled.span`
 export const ProgressDots = styled.div`
   display: flex;
   gap: 4px;
+  margin-right: 8px;
 `
 
 export const ProgressSquares = styled.div`
   display: flex;
-  margin-top: 30px;
+  margin-top: 32px;
   gap: 8px;
 `
 
